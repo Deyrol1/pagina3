@@ -44,9 +44,12 @@
         <ion-col>
           <ion-text>Precio total</ion-text>
         </ion-col>
+        <ion-col>
+          <ion-text>Acciones</ion-text>
+        </ion-col>
       </ion-row>
   
-      <ion-col *ngFor="let i of inputRowValues; let ii=index">
+      <ion-col *ngFor="let i of inputRowValues; let ii=index" id="ciclo">
         <app-agrfact [data]="i" (onDelete)="onDelete($event)"></app-agrfact>
       </ion-col>
    
