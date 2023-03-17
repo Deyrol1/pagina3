@@ -1,0 +1,96 @@
+<ion-header>
+  
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Agregar factura</ion-title>
+    </ion-toolbar>
+  
+</ion-header>
+<ion-content>
+  
+ 
+  <ion-card>
+    <ion-card-header >
+      <ion-item >
+       
+      <ion-card-title slot="start">Registro factura</ion-card-title>
+      <ion-label>
+      <ion-card-subtitle>Factura Nro ----</ion-card-subtitle>
+      <ion-card-subtitle >
+        Fecha: {{ fechaf}}
+      </ion-card-subtitle>
+    </ion-label>
+    </ion-item>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-row id="tabla" >
+        <ion-col>
+          <ion-text>Codigo</ion-text>
+        </ion-col>
+  
+        <ion-col>
+          <ion-text>Descripcion</ion-text>
+        </ion-col>
+  
+        <ion-col>
+          <ion-text>Cantidad</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>Precio unidad</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text>Precio total</ion-text>
+        </ion-col>
+      </ion-row>
+  
+      <ion-col *ngFor="let i of inputRowValues; let ii=index">
+        <app-agrfact [data]="i" (onDelete)="onDelete($event)"></app-agrfact>
+      </ion-col>
+   
+      
+      
+      <ion-button id="add_row" class="add" (click)="addRow()"> Agregar fila 
+      </ion-button>
+
+
+
+
+      <ion-list id="precios">
+        <ion-item>
+          <ion-label>Subtotal</ion-label>
+          <ion-label>miau</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Iva</ion-label>
+          <ion-label>hola</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Descuento</ion-label>
+          <ion-label>miua</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label >TOTAL</ion-label>
+          <ion-label>ush</ion-label>
+        </ion-item>
+      
+      </ion-list>
+    </ion-card-content>
+  
+    <ion-button color="success">Agregar</ion-button>
+    <ion-button color="danger">Cancelar</ion-button>
+  </ion-card>
+
+
+
+
+
+
+
+
+
+ 
+</ion-content>
+
