@@ -1,20 +1,20 @@
 <ion-grid>
     
-     <ion-row>
+     <ion-row >
         <ion-col >
-            <ion-input placeholder="miau"></ion-input>
+            <ion-label placeholder="id" [(ngModel)]="data.idpro"> id</ion-label >
+        </ion-col>
+        <ion-col >
+            <ion-input placeholder="decripcion" [(ngModel)]="data.decripcion"></ion-input>
         </ion-col>
         <ion-col>
-            <ion-input placeholder="miau"></ion-input>
+            <ion-input placeholder="cantidad"   type="number"  [(ngModel)]="data.cantidad" (ionChange)="miau()"></ion-input>
         </ion-col>
         <ion-col>
-            <ion-input placeholder="miau"></ion-input>
+            <ion-input [(ngModel)]="data.unidad" type="number" ></ion-input>
         </ion-col>
         <ion-col>
-            <ion-label>hola</ion-label>
-        </ion-col>
-        <ion-col>
-            <ion-label>hola</ion-label>
+            <ion-input [(ngModel)]="data.total" ></ion-input>
             
         </ion-col>
         <ion-col>

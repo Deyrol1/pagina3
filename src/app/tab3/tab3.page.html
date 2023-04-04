@@ -18,7 +18,7 @@
     <ion-card-content>
       <ion-item>
         <ion-icon name="mail"></ion-icon>
-        <ion-label>correo: miau</ion-label>
+        <ion-label>correo: {{correo }}  </ion-label>
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -28,6 +28,6 @@
 <ion-footer>
  
 
-    <ion-button routerLink="/" color="danger" >Cerrar sesion</ion-button>
+    <ion-button (click)="salir()" color="danger" >Cerrar sesion</ion-button>
 
 </ion-footer>

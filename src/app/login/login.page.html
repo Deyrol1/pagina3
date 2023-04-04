@@ -7,25 +7,25 @@
 
         <ion-card id="login" >
           <ion-card-header>
-            <ion-card-title>Inicio de sesion</ion-card-title>
+            <ion-card-title>Inicio de sesion/registro</ion-card-title>
       
           </ion-card-header>
         
           <ion-card-content>
             <ion-item>
-              <ion-label position="floating">Su correo</ion-label>
-              <ion-input placeholder="Correo"></ion-input>
+              <ion-label position="floating" >Su correo</ion-label>
+              <ion-input  type="email" placeholder="Correo" [(ngModel)]="usuario.email" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">La contrasena</ion-label>
-              <ion-input type="password" placeholder="Contrasena"></ion-input>
+              <ion-input type="password" placeholder="Contrasena" [(ngModel)]="usuario.contrasena" required="miau"></ion-input>
             </ion-item>
           </ion-card-content>
         
-          <ion-button color="secondary"  routerLink="/tabs" >Iniciar sesion</ion-button>
+          <ion-button color="secondary"  (click)="registrar()" type="submit">registrar</ion-button>
+          <ion-button color="secondary"  (click)="ingresar()" type="submit">Iniciar sesion</ion-button>
          
         </ion-card>
 
-  
-  
+    
 </ion-content>

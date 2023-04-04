@@ -21,6 +21,9 @@
       <ion-card-subtitle >
         Fecha: {{ fechaf}}
       </ion-card-subtitle>
+      <ion-card-subtitle >
+        encargado:  {{ correo }}
+      </ion-card-subtitle>
     </ion-label>
     </ion-item>
     </ion-card-header>
@@ -53,6 +56,7 @@
         <app-agrfact [data]="i" (onDelete)="onDelete($event)"></app-agrfact>
       </ion-col>
    
+
       
       
       <ion-button id="add_row" class="add" (click)="addRow()"> Agregar fila 
@@ -82,13 +86,21 @@
       </ion-list>
     </ion-card-content>
   
-    <ion-button color="success">Agregar</ion-button>
+    <ion-button color="success" (click)="generar()" >Agregar</ion-button>
     <ion-button color="danger">Cancelar</ion-button>
   </ion-card>
 
 
 
+  <h4>Results</h4>
+  
 
+  <div *ngFor="let item of inputRowValues; let i=index">
+    
+    <ion-label> {{item | json }} </ion-label>
+    
+  </div>
+ 
 
 
 
