@@ -39,14 +39,14 @@
     </ion-fab-list>
   </ion-fab>
 
-  <ion-card>
+  <ion-card   *ngFor="let item of factura; let i=index"   >
   <ion-card-content>
     <ion-list [inset]="true">
       <ion-item-sliding>
       <ion-item>
-        <ion-label>Factura Nro ----</ion-label>
+        <ion-label>Factura Nro {{ i+1 }} </ion-label>
         <ion-icon name="cash" slot="start"></ion-icon>
-        <ion-label>precio: $$$</ion-label>
+        <ion-label>precio: {{ item.total }}</ion-label>
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
       
       </ion-item>
@@ -59,6 +59,9 @@
   </ion-list>
   </ion-card-content>
 </ion-card>
+
+
+
 
 </ion-content>
 

@@ -1,4 +1,5 @@
-import { LoginService } from './../../servicios/login.service';
+import { BasedatosService } from './../../servicios/basedatos.service';
+
 import { Component, OnInit } from '@angular/core';
 
 import { NavController } from '@ionic/angular';
@@ -39,10 +40,15 @@ export class AgregarPage implements OnInit {
   }
  
 
-  constructor(public navCtrl: NavController, private authservice: LoginService) {
+  constructor(public navCtrl: NavController, private base: BasedatosService) {
 
 
 
+    
+    this.base.facturas().subscribe(data=>{
+      console.log("hola",data);
+    })
+    
     
     
    }
@@ -68,10 +74,9 @@ export class AgregarPage implements OnInit {
    ngOnInit() {
 
 
-    this.correo = this.authservice.emaill();
+ 
 
 
-    
    }
  
 

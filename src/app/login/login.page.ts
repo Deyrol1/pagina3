@@ -17,27 +17,13 @@ export class LoginPage implements OnInit {
 
 
   correo:any;
-  registrar(){
-    const {email,contrasena}= this.usuario;
-    this.authservice.registro(email,contrasena).then(res =>{
-      console.log("regitro",res);
-    })
-  }
+ 
   ingresar(){
-    const {email,contrasena}= this.usuario;
   
-    
-    this.authservice.login(email,contrasena).then(res =>{
-      console.log("inicio ",res.user.email);
-
-      this.authservice.email(res.user.email);
-
-      
-    
 
 
       this.router.navigate(['/tabs']);
-    })
+    
   
   }
   constructor(private authservice: LoginService,private router: Router) { }

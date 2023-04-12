@@ -7,6 +7,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
  
 
@@ -20,7 +21,7 @@ const firebaseConfig = {
 };
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, AngularFireModule.initializeApp(firebaseConfig)],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, AngularFireModule.initializeApp(firebaseConfig),HttpClientModule,],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
