@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { BasedatosService } from '../servicios/basedatos.service';
+import { Factura } from '../modelos/factura';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -13,20 +15,37 @@ export class Tab2Page {
 
 
 
-  factura:any;
 
+  public facturas : Factura[] =[];
+  public factura : Factura ;
+
+  public facturassub = new Subscription();  
 
   constructor( private base: BasedatosService) {
 
 
 
     
-    this.base.facturas().subscribe(data=>{
-      this.factura=data;
-    })
     
     
     
+    
+    
+   }
+
+   ngOnInit() {
+  
+
+    this.base.todasfacturas()  ;
+    this.facturassub = this.base.todasfacturas$().subscribe((res: Factura[])=>{
+
+      this.facturas = res;
+
+      console.log("uga",this.facturas);
+
+    });
+
+
    }
 
 

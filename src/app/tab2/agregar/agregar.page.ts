@@ -45,12 +45,6 @@ export class AgregarPage implements OnInit {
 
 
     
-    this.base.facturas().subscribe(data=>{
-      console.log("hola",data);
-    })
-    
-    
-    
    }
 
 
