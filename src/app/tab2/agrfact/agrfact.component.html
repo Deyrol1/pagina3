@@ -3,19 +3,19 @@
      <ion-row >
         <ion-col >
             <ion-select aria-label="Fruit" interface="popover" placeholder="categoria" [(ngModel)]="data.categoria"  (ionChange)="handleChange($event)">
-                <ion-select-option   *ngFor="let item of categorias" value= "{{ item.nombre }}"   > {{ item.nombre }}</ion-select-option>
+                <ion-select-option   *ngFor="let item of categorias" value= "{{ item.id }}"   > {{ item.nombre }}</ion-select-option>
               </ion-select>
         </ion-col>
         <ion-col >
-            <ion-select aria-label="Fruit" interface="popover" placeholder="producto" [(ngModel)]="data.producto">
-                <ion-select-option   *ngFor="let item of productos" value= "{{ item.nombre }}"   > {{ item.nombre }}</ion-select-option>
+            <ion-select aria-label="Fruit" interface="popover" placeholder="producto" [(ngModel)]="data.producto" (ionChange)="cambio($event)">
+                <ion-select-option   *ngFor="let item of productos" value= "{{ item.id }}"   > {{ item.nombre }}</ion-select-option>
               </ion-select>
         </ion-col>
         <ion-col>
             <ion-input placeholder="cantidad"   type="number"  [(ngModel)]="data.cantidad" (ionChange)="miau()"></ion-input>
         </ion-col>
         <ion-col>
-            <ion-input [(ngModel)]="data.unidad" type="number" ></ion-input>
+            <ion-input [(ngModel)]="data.precio" type="number" disabled></ion-input >
         </ion-col>
         <ion-col>
             <ion-input [(ngModel)]="data.total" ></ion-input>

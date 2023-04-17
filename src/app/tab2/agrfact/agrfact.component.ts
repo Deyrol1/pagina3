@@ -17,6 +17,8 @@ export class AgrfactComponent  implements OnInit {
   
   public productos:Producto[] =[];
   public productossub = new Subscription(); 
+
+  public producto: Producto;
   item:any;
   // the data object to hold values from this component
   @Input() data: any
@@ -52,11 +54,12 @@ export class AgrfactComponent  implements OnInit {
 
 
   miau(){
-    this.data.total =this.data.cantidad * this.data.unidad;
+    this.data.total =this.data.cantidad * this.data.precio;
   }
 
 
   ngOnInit() {
+    this.data.id = new Date().getTime()
     this.data.unidad= this.valor;
     
   }
@@ -89,4 +92,28 @@ export class AgrfactComponent  implements OnInit {
     });
 
   };
+
+
+  cambio(e) {
+    this.logs = (e.detail.value);
+    console.log("el productozeleccionado da ezto:",this.logs);
+    console.log(this.base.productoselect(this.logs)) ;
+
+
+    this.productossub = this.base.productoselect$().subscribe((res: Producto)=>{
+  
+      this.producto = res;
+  
+
+
+      this.data.precio =this.producto.precio;
+
+    });
+
+  };
+
+
+
+
+
 }

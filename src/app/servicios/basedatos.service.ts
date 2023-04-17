@@ -140,7 +140,9 @@ export class BasedatosService {
     this.productos =[];
 
     const opt ={
-      url: "http://localhost:3000/categorias?filter[include][]=productos&filter[where][nombre]="+dato
+
+  
+      url: "http://localhost:3000/categorias/"+dato+"/productos"
     }
 
     const response: HttpResponse = await CapacitorHttp.get(opt);
@@ -148,18 +150,15 @@ export class BasedatosService {
 
     console.log("el rezponze ez:",response);
    
-    let uga: any;
+    let uga: any =response;
     response.data.forEach((item:any)=>{
       console.log("el item ez uga:",item);
-
-      uga = item.productos;
-      uga.forEach((item:any) => {
-        this.producto= new Producto();
+      this.producto= new Producto();
         this.producto.set(item);
   
   
         this.productos.push(this.producto);
-      });
+
     
   
 
@@ -176,6 +175,39 @@ export class BasedatosService {
 
   todosproductos$(): Observable<Producto[]>{
     return this.productos$.asObservable();
+  }
+
+
+
+  async productoselect (dato:string)  {
+
+    this.productos =[];
+
+    const opt ={
+
+      url: "http://localhost:3000/productos/"+dato
+    }
+
+    const response: HttpResponse = await CapacitorHttp.get(opt);
+
+
+    console.log("el producto individual  ez: uhhkjdgkgd",response);
+   
+    this.producto= new Producto();
+    this.producto.set(response.data);
+
+   console.log("el podructo uga ez:",this.producto);
+    
+
+    this.producto$.next(this.producto);
+    console.log("el producto$ ez:",this.producto$);
+    return this.producto$;
+   }
+
+
+
+   productoselect$(): Observable<Producto>{
+    return this.producto$.asObservable();
   }
 
 
