@@ -111,19 +111,19 @@ export class BasedatosService {
     const response: HttpResponse = await CapacitorHttp.get(opt);
 
 
-    console.log("el rezponze ez:",response);
+   
    
     response.data.forEach((item:any)=>{
-      console.log("el item ez:",item);
+  
       this.categoria= new Categoria();
       this.categoria.set(item);
       this.categorias.push(this.categoria);
 
     });
 
-    console.log("laz categoriaz zon:",this.categorias);
+
     this.categorias$.next(this.categorias);
-    console.log("laz categoriaz$ zon:",this.categorias$);
+  
     return this.categorias$;
    }
 
@@ -135,38 +135,28 @@ export class BasedatosService {
   }
 
 
-  async todosproductos (dato:string)  {
+  async todosproductos ()  {
 
     this.productos =[];
 
     const opt ={
-
-  
-      url: "http://localhost:3000/categorias/"+dato+"/productos"
+      url: this.url+"productos"
     }
 
     const response: HttpResponse = await CapacitorHttp.get(opt);
-
-
-    console.log("el rezponze ez:",response);
    
-    let uga: any =response;
+    console.log("el rezponze ez:",response);
     response.data.forEach((item:any)=>{
-      console.log("el item ez uga:",item);
+      console.log("el item producto ez uga:",item);
       this.producto= new Producto();
         this.producto.set(item);
-  
-  
         this.productos.push(this.producto);
-
-    
-  
-
     });
 
-    console.log("loz productoz zon:",this.productos);
+   
+    console.log("el producto final da:",this.productos)
     this.productos$.next(this.productos);
-    console.log("laz productoz$ zon:",this.productos$);
+   
     return this.productos$;
    }
 

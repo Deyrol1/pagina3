@@ -1,9 +1,10 @@
+import { Categoria } from 'src/app/modelos/categoria';
+import { Producto } from './../../modelos/producto';
 import { Subscription } from 'rxjs';
 import { Component, OnInit,  Input, EventEmitter, Output  } from '@angular/core';
-import { Categoria } from 'src/app/modelos/categoria';
 import { Factura } from 'src/app/modelos/factura';
 import { BasedatosService } from 'src/app/servicios/basedatos.service';
-import { Producto } from 'src/app/modelos/producto';
+
 @Component({
   selector: 'app-agrfact',
   templateUrl: './agrfact.component.html',
@@ -14,11 +15,12 @@ export class AgrfactComponent  implements OnInit {
   
   public categorias:Categoria[] =[];
   public categoriassub = new Subscription(); 
-  
-  public productos:Producto[] =[];
+  public producto : Producto ;
+  public productos=[];
+  public todoproductos:Producto[] =[];
   public productossub = new Subscription(); 
 
-  public producto: Producto;
+ 
   item:any;
   // the data object to hold values from this component
   @Input() data: any
@@ -26,6 +28,7 @@ export class AgrfactComponent  implements OnInit {
   // emitt an event to indicate the user has clicked on 
   // the delete button in this component
   @Output() onDelete = new EventEmitter<any>();
+  @Output() change = new EventEmitter<any>();
   
   
   fecha = new Date();
@@ -34,62 +37,96 @@ export class AgrfactComponent  implements OnInit {
 
   logs: string;
   valor=1;
+
+  cantcat =0;
   constructor(private base: BasedatosService) { 
 
  
+   
+
+  }
+
+
+  
+
+  dato =0;
+
+  ngOnInit() {
+    this.data.id = new Date().getTime()
+   
     this.base.todascategorias()  ;
+    
 
     this.categoriassub = this.base.todascategorias$().subscribe((res: Categoria[])=>{
   
       this.categorias = res;
+
+    });
   
-      console.log("categoriaz",this.categorias);
+    this.base.todosproductos();
+    this.productossub = this.base.todosproductos$().subscribe((res: Producto[])=>{
   
+      this.todoproductos = res;
     });
 
+ 
+ 
+  
+
+  
+
+   
+  
+   
+
+  
 
    
 
+
+
+// this.logs = (e.detail.value);
+//  console.log("el cozo da ezto:",this.logs);
+
+  //  this.base.todosproductos(this.logs)  ;
+
+    //this.productossub = this.base.todosproductos$().subscribe((res: Producto[])=>{
+  
+    //  this.productos = res;
+  
+      //console.log("prodcutoz",this.productos);
+    //});
+
+
+
+
+   
+    
+  
+    
   }
+  deleteClicked() {
+  this.onDelete.next(this.data)
+  }
+
 
 
   miau(){
     this.data.total =this.data.cantidad * this.data.precio;
   }
 
-
-  ngOnInit() {
-    this.data.id = new Date().getTime()
-    this.data.unidad= this.valor;
-    
-  }
-  deleteClicked(item) {
-    console.log("holaaaa",this.data.categoria);
-
-  this.onDelete.next(this.data)
-  
- 
-
-
-
-
-  
-  }
-
-
+  um : any
  
   handleChange(e) {
-    this.logs = (e.detail.value);
-    console.log("el cozo da ezto:",this.logs);
 
-    this.base.todosproductos(this.logs)  ;
+    console.log("todozprodcutoz da:",this.todoproductos);
 
-    this.productossub = this.base.todosproductos$().subscribe((res: Producto[])=>{
+
+      this.productos = this.todoproductos.filter((array:any) => array.categoriaId == e.categoria);
+    
+    console.log("el producto zeleccionado da:",this.productos);
+
   
-      this.productos = res;
-  
-      console.log("prodcutoz",this.productos);
-    });
 
   };
 
@@ -99,16 +136,11 @@ export class AgrfactComponent  implements OnInit {
     console.log("el productozeleccionado da ezto:",this.logs);
     console.log(this.base.productoselect(this.logs)) ;
 
+    let otro=this.todoproductos.find(dat=> dat.id == this.logs); 
 
-    this.productossub = this.base.productoselect$().subscribe((res: Producto)=>{
   
-      this.producto = res;
-  
-
-
-      this.data.precio =this.producto.precio;
-
-    });
+      this.data.precio =otro.precio;
+   
 
   };
 

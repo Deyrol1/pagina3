@@ -87,14 +87,17 @@ export class AgregarPage implements OnInit {
 
   addRow() {
     this.inputRowValues.push({})
-    console.log("valore",this.inputRowValues)
   }
 
   _event:any;
   // removes entry from the  inputRowValues array based on the id
   onDelete(_event) {
-    console.log(_event)
+    console.log("el evento da:",_event)
     this.inputRowValues = this.inputRowValues.filter((i: any) => i.id !== _event.id)
   }
+
+  
+
+
   
 }

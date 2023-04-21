@@ -2,30 +2,30 @@
     
      <ion-row >
         <ion-col >
-            <ion-select aria-label="Fruit" interface="popover" placeholder="categoria" [(ngModel)]="data.categoria"  (ionChange)="handleChange($event)">
-                <ion-select-option   *ngFor="let item of categorias" value= "{{ item.id }}"   > {{ item.nombre }}</ion-select-option>
+            <ion-select aria-label="categoria" interface="popover" placeholder="categoria" [(ngModel)]="data.categoria" id="{{data.id}}  "  (ionChange)="handleChange(data)">
+                <ion-select-option   *ngFor="let item of categorias" value= "{{ item.id }}"  > {{ item.nombre }}</ion-select-option>
               </ion-select>
         </ion-col>
         <ion-col >
-            <ion-select aria-label="Fruit" interface="popover" placeholder="producto" [(ngModel)]="data.producto" (ionChange)="cambio($event)">
-                <ion-select-option   *ngFor="let item of productos" value= "{{ item.id }}"   > {{ item.nombre }}</ion-select-option>
+            <ion-select aria-label="producto" interface="popover" placeholder="producto" [(ngModel)]="data.producto" (ionChange)="cambio($event)">
+                <ion-select-option   *ngFor="let item of productos" value= "{{ item.id }}"> {{ item.nombre }}</ion-select-option>
               </ion-select>
         </ion-col>
         <ion-col>
             <ion-input placeholder="cantidad"   type="number"  [(ngModel)]="data.cantidad" (ionChange)="miau()"></ion-input>
         </ion-col>
         <ion-col>
-            <ion-input [(ngModel)]="data.precio" type="number" disabled></ion-input >
+            <ion-input [(ngModel)]="data.precio" type="number" disabled ></ion-input >
         </ion-col>
         <ion-col>
-            <ion-input [(ngModel)]="data.total" ></ion-input>
+            <ion-input [(ngModel)]="data.total" disabled></ion-input>
             
         </ion-col>
         <ion-col>
-            <ion-button color="danger"  (click)="deleteClicked(item)">Eliminar</ion-button>
+            <ion-button color="danger"  (click)="deleteClicked()">Eliminar</ion-button>
         </ion-col>
         
-     
+     <ion-input [(ngModel)]="data.productos">  </ion-input>
     
     </ion-row>
 
